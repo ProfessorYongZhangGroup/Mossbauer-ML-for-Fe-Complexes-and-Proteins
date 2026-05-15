@@ -23,7 +23,7 @@ The following python (v. 3.12.9) libraries must be installed in order to run inc
 > Certain minor changes to the code of SphereNet were made in order to accommodate our prediction task. Please install the files `spherenet_files/run.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method`
 > and `spherenet_files/features.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method/spherenet` in order to use our SphereNet model or train your own, where `[env]` is the root of the installed python environmeent.
 
-Semiempirical calculations were performed using xtb (v. 6.7.1) and tblite (v. 0.5.0). Please make these available on the `PATH` environmental variable so that relevant code can run these programs.
+Semiempirical calculations were performed using [xtb](https://github.com/grimme-lab/xtb) (v. 6.7.1) and [tblite](https://github.com/tblite/tblite) (v. 0.5.0). Please make these available on the `PATH` environmental variable so that relevant code can run these programs.
 
 ## Citation
 
