@@ -14,4 +14,4 @@ in order to use our SphereNet model or train your own.
 
 ## Citation
 
-Find out paper at [url]. Please cite our paper if you decide to use our code, dataset, or models.
+Find out paper at [url]. Please cite our paper if you decide to use our code, dataset, or models for your own work.
