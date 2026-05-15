@@ -8,9 +8,9 @@ given code.
 
 The following libraries must be installed in order to run included Jupyter notebooks and scripts:
 
-
-Additionally, certain minor changes to the code of SphereNet were made in order to accommodate our prediction task. Please install the file [file] at [location]
-in order to use our SphereNet model or train your own.
+> [!WARNING]
+> Certain minor changes to the code of SphereNet were made in order to accommodate our prediction task. Please install the files `spherenet_files/run.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method`
+> and `spherenet_files/features.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method/spherenet` in order to use our SphereNet model or train your own, where `[env]` is the root of the installed python environmeent.
 
 ## Citation
 
