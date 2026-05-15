@@ -1,4 +1,5 @@
 ﻿# Machine Learning Predictions of Mössbauer Parameters of Fe-containing Molecular Complexes and Protein Models with Close-to-DFT Accuracy
+<img width="500" height="853" alt="image" src="https://github.com/user-attachments/assets/14388431-610c-4703-98b6-7691723aed8c" />
 
 This repository provides the iron complex structures collected and the code ran to produce the results for our recently published research. Additionally, 
 trained models for Chemprop and SphereNet are included, as the best Ridge regression and Support Vector regression models are easily replicable with the 
