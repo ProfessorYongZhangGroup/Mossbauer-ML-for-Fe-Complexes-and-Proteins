@@ -6,11 +6,24 @@ given code.
 
 ## Installation
 
-The following libraries must be installed in order to run included Jupyter notebooks and scripts:
+The following python (v. 3.12.9) libraries must be installed in order to run included Jupyter notebooks and scripts:
+
+- RDKit (v. 2025.03.3)
+- Scikit-learn (v. 1.5.1)
+- Pandas (v. 2.2.3)
+- PyTorch (v. 2.7.1+cu126)
+- PyTorch Lightning (v. 2.5.2)
+- Chemprop (v. 2.1.2)
+- DIG (v. 0.0.4)
+
+> [!WARNING]
+> Version numbers are those that were originally used. Using a different python or library version may result in failure of the code to run (PyTorch version is less important). We recommend that the libraries are installed with conda/mamba.
 
 > [!WARNING]
 > Certain minor changes to the code of SphereNet were made in order to accommodate our prediction task. Please install the files `spherenet_files/run.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method`
 > and `spherenet_files/features.py` at `[env]/lib/python3.12/site-packages/dig/threedgraph/method/spherenet` in order to use our SphereNet model or train your own, where `[env]` is the root of the installed python environmeent.
+
+Semiempirical calculations were performed using xtb (v. 6.7.1) and tblite (v. 0.5.0). Please make these available on the `PATH` environmental variable so that relevant code can run these programs.
 
 ## Citation
 
