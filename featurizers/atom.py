@@ -56,6 +56,7 @@ class TMCAtomFeaturizer(VectorFeaturizer[Atom]):
         num_Hs: Sequence[int],
         hybridizations: Sequence[int],
         chirality: Sequence[int],
+        mask: Sequence[bool],
     ):
         self.atomic_nums = {j: i for i, j in enumerate(atomic_nums)}
         self.degrees = {i: i for i in degrees}
@@ -63,6 +64,7 @@ class TMCAtomFeaturizer(VectorFeaturizer[Atom]):
         self.num_Hs = {i: i for i in num_Hs}
         self.hybridizations = {ht: i for i, ht in enumerate(hybridizations)}
         self.chirality = {ct: i for i, ct in enumerate(chirality)}
+        self.mask = mask
         
         self.__electronegativity = {
             "H" :2.20 ,"Li":0.98,"Be":1.57,"B" :2.04,"C" :2.55,"N" :3.04,"O" :3.44,
@@ -91,7 +93,6 @@ class TMCAtomFeaturizer(VectorFeaturizer[Atom]):
             1,
             1,
             1,
-            #1,
         ]
         self.__size = sum(subfeat_sizes)
 
@@ -112,21 +113,21 @@ class TMCAtomFeaturizer(VectorFeaturizer[Atom]):
             a.GetChiralTag(),
         ]
         i = 0
-        for feat, choices in zip(feats, self._subfeats):
+        for k, (feat, choices) in enumerate(zip(feats, self._subfeats)):
             j = choices.get(feat, len(choices))
-            x[i + j] = 1
+            x[i + j] = 1 if self.mask[k] else 0
             i += len(choices) + 1
-        x[i] = int(a.GetIsAromatic())
-        x[i + 1] = 0.01 * a.GetMass()
-        x[i + 2] = 0.25 * self.__electronegativity[a.GetSymbol()]
-        #x[i + 3] = (a.GetSymbol() == 'Fe')
+        x[i] = int(a.GetIsAromatic()) if self.mask[5] else 0
+        x[i + 1] = 0.01 * a.GetMass() if self.mask[6] else 0
+        x[i + 2] = 0.25 * self.__electronegativity[a.GetSymbol()] if self.mask[7] else 0
 
         return x
 
     @classmethod
-    def complex(cls):
+    def complex(cls,mask=None):
         """An implementation that includes an atom type bit for all elements in the first four rows of the periodic table plus iodine."""
-
+        if mask is None:
+            mask = [True for x in range(8)]
         return cls(
             atomic_nums=list(range(1, 37)) + [53, 78],
             degrees=list(range(6)),
@@ -148,4 +149,5 @@ class TMCAtomFeaturizer(VectorFeaturizer[Atom]):
                 ChiralType.CHI_TRIGONALBIPYRAMIDAL,
                 ChiralType.CHI_OCTAHEDRAL,
             ],
+            mask=mask
         )

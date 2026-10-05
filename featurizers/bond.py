@@ -47,13 +47,15 @@ class TMCBondFeaturizer(VectorFeaturizer[Bond]):
     .. [1] https://www.rdkit.org/docs/source/rdkit.Chem.rdchem.html#rdkit.Chem.rdchem.BondStereo.values
     """
 
-    def __init__(self, bond_types: Sequence[BondType] | None = None):
+    def __init__(self, bond_types: Sequence[BondType] | None = None, mask: Sequence[bool] | None = None):
         self.bond_types = bond_types or [
             BondType.SINGLE,
             BondType.DOUBLE,
             BondType.TRIPLE,
             BondType.AROMATIC,
         ]
+
+        self.mask = mask or [True for x in range(4)]
 
     def __len__(self):
         return 1 + len(self.bond_types) + 3
@@ -69,12 +71,12 @@ class TMCBondFeaturizer(VectorFeaturizer[Bond]):
         bond_type = b.GetBondType()
         bt_bit, size = self.one_hot_index(bond_type, self.bond_types)
         if bt_bit != size:
-            x[i + bt_bit] = 1
+            x[i + bt_bit] = 1 if self.mask[0] else 0
         i += size - 1
 
-        x[i] = int(b.GetIsConjugated())
-        x[i + 1] = int(b.IsInRing())
-        x[i + 2] = GetBondLength(b.GetOwningMol().GetConformer(), b.GetBeginAtomIdx(), b.GetEndAtomIdx())
+        x[i] = int(b.GetIsConjugated()) if self.mask[1] else 0
+        x[i + 1] = int(b.IsInRing()) if self.mask[2] else 0
+        x[i + 2] = GetBondLength(b.GetOwningMol().GetConformer(), b.GetBeginAtomIdx(), b.GetEndAtomIdx()) if self.mask[3] else 0
 
         return x
 
