@@ -28,4 +28,4 @@ Semiempirical calculations were performed using [xtb](https://github.com/grimme-
 
 ## Citation
 
-Find out paper online [here](https://doi.org/10.1021/acs.jcim.6c02183). Please cite our paper if you decide to use our code, dataset, or models for your own work.
+Find out paper online [here](https://doi.org/10.1021/acs.jcim.6c02183) in the Journal of Chemical Information and Modeling. Please cite our paper if you decide to use our code, dataset, or models for your own work.
